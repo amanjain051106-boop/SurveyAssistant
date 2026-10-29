@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurveyAssistant - Profile & Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <img src="icons/icon48.png" alt="SurveyAssistant Logo" class="brand-icon">
+        <div>
+          <h1>SurveyAssistant Profile & Settings</h1>
+          <p class="tagline">Local, privacy-first survey assistant. Zero cloud data transmission.</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="save-top-btn" class="btn btn-primary">Save Changes</button>
+      </div>
+    </header>
+
+    <!-- Privacy Banner -->
+    <div class="privacy-alert">
+      <div class="alert-icon">🛡️</div>
+      <div class="alert-content">
+        <strong>100% Local & Private:</strong> All your profile information is stored exclusively in your browser via <code>chrome.storage.local</code>. It is never uploaded to remote cloud servers or third parties.
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-profile">User Profile</button>
+      <button class="tab-btn" data-tab="tab-custom">Custom Facts</button>
+      <button class="tab-btn" data-tab="tab-llm">Local Ollama LLM</button>
+      <button class="tab-btn" data-tab="tab-backup">Backup & Demo</button>
+    </nav>
+
+    <!-- Tab 1: Profile Details -->
+    <section id="tab-profile" class="tab-content active">
+      <!-- Personal Details -->
+      <div class="card">
+        <h2 class="card-title">Personal Details</h2>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="e.g. Alex Morgan">
+          </div>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="e.g. Alex">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="e.g. Morgan">
+          </div>
+        </div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="e.g. alex@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="e.g. +1 555-0199">
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="">-- Select or type --</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Non-binary">Non-binary</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" min="1" max="120" placeholder="e.g. 29">
+          </div>
+          <div class="form-group">
+            <label for="birthYear">Birth Year</label>
+            <input type="number" id="birthYear" min="1900" max="2026" placeholder="e.g. 1997">
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Details -->
+      <div class="card">
+        <h2 class="card-title">Location & Geography</h2>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="country">Country of Residence</label>
+            <input type="text" id="country" placeholder="e.g. United States or India">
+          </div>
+          <div class="form-group">
+            <label for="stateProvince">State / Province / Region</label>
+            <input type="text" id="stateProvince" placeholder="e.g. California or Ontario">
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="city">City / Town</label>
+            <input type="text" id="city" placeholder="e.g. San Francisco">
+          </div>
+          <div class="form-group">
+            <label for="postalCode">Postal / Zip Code</label>
+            <input type="text" id="postalCode" placeholder="e.g. 94107">
+          </div>
+        </div>
+      </div>
+
+      <!-- Education & Employment -->
+      <div class="card">
+        <h2 class="card-title">Education & Employment</h2>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="education">Highest Education Level</label>
+            <select id="education">
+              <option value="">-- Select Education --</option>
+              <option value="High School">High School / GED</option>
+              <option value="Some College / Associate Degree">Some College / Associate Degree</option>
+              <option value="Bachelor's Degree">Bachelor's Degree</option>
+              <option value="Master's Degree">Master's Degree</option>
+              <option value="Doctorate or Professional Degree">Doctorate or Professional Degree (PhD, MD, JD)</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="employmentStatus">Employment Status</label>
+            <select id="employmentStatus">
+              <option value="">-- Select Status --</option>
+              <option value="Employed full-time">Employed full-time (40+ hrs/wk)</option>
+              <option value="Employed part-time">Employed part-time</option>
+              <option value="Self-employed / Freelance">Self-employed / Freelance</option>
+              <option value="Student">Student</option>
+              <option value="Homemaker">Homemaker</option>
+              <option value="Retired">Retired</option>
+              <option value="Not currently employed">Not currently employed</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" placeholder="e.g. Software Engineer, Designer">
+          </div>
+          <div class="form-group">
+            <label for="industry">Industry / Sector</label>
+            <input type="text" id="industry" placeholder="e.g. Technology, Healthcare, Education">
+          </div>
+          <div class="form-group">
+            <label for="householdIncome">Household Income Range</label>
+            <select id="householdIncome">
+              <option value="">-- Select Income --</option>
+              <option value="Under $25,000">Under $25,000</option>
+              <option value="$25,000 - $49,999">$25,000 - $49,999</option>
+              <option value="$50,000 - $74,999">$50,000 - $74,999</option>
+              <option value="$75,000 - $99,999">$75,000 - $99,999</option>
+              <option value="$100,000 - $149,999">$100,000 - $149,999</option>
+              <option value="$150,000 or more">$150,000 or more</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Household & Lifestyle -->
+      <div class="card">
+        <h2 class="card-title">Household & Habits</h2>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label for="maritalStatus">Marital Status</label>
+            <select id="maritalStatus">
+              <option value="">-- Select --</option>
+              <option value="Single">Single / Never Married</option>
+              <option value="Married">Married</option>
+              <option value="Domestic Partnership">Domestic Partnership</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Widowed">Widowed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="hasChildren">Children in Household</label>
+            <select id="hasChildren">
+              <option value="">-- Select --</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="householdSize">Total Household Size</label>
+            <input type="number" id="householdSize" min="1" max="20" placeholder="e.g. 2">
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="primaryLanguage">Primary Language</label>
+            <input type="text" id="primaryLanguage" placeholder="e.g. English">
+          </div>
+          <div class="form-group">
+            <label for="deviceUsage">Daily Devices Used</label>
+            <input type="text" id="deviceUsage" placeholder="e.g. Computer, Smartphone, Tablet">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="hobbies">Interests & Hobbies</label>
+          <input type="text" id="hobbies" placeholder="e.g. Reading, Hiking, Technology, Cooking">
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Custom Facts -->
+    <section id="tab-custom" class="tab-content">
+      <div class="card">
+        <div class="card-header-flex">
+          <div>
+            <h2 class="card-title">Custom Facts & Preferences</h2>
+            <p class="card-desc">Add unique facts or answers frequently asked in surveys (e.g., favorite brands, pets, commute methods, shopping habits).</p>
+          </div>
+          <button id="add-custom-fact-btn" class="btn btn-secondary">+ Add Fact</button>
+        </div>
+
+        <div id="custom-facts-container" class="custom-facts-list">
+          <!-- Dynamically populated -->
+        </div>
+
+        <template id="custom-fact-row-template">
+          <div class="custom-fact-row">
+            <input type="text" class="fact-key" placeholder="Question / Key (e.g. Pet Owner)">
+            <input type="text" class="fact-value" placeholder="Answer / Value (e.g. Yes, 1 Dog)">
+            <button class="btn btn-danger remove-fact-btn" title="Remove Fact">&times;</button>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- Tab 3: Local LLM (Ollama) -->
+    <section id="tab-llm" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">Local Ollama LLM Configuration</h2>
+        <p class="card-desc">Use a locally installed language model to interpret questions that rule-based matching cannot resolve. Requires Ollama running locally.</p>
+
+        <div class="form-check-group">
+          <label class="switch">
+            <input type="checkbox" id="enableOllama">
+            <span class="slider round"></span>
+          </label>
+          <label for="enableOllama" class="switch-label">
+            <strong>Enable Local LLM interpretation</strong>
+            <span class="subtext">When enabled, SurveyAssistant asks your local Ollama for ambiguous questions. Grounded strictly in your profile.</span>
+          </label>
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 18px;">
+          <div class="form-group">
+            <label for="ollamaUrl">Ollama Base URL</label>
+            <input type="text" id="ollamaUrl" placeholder="http://localhost:11434">
+          </div>
+          <div class="form-group">
+            <label for="ollamaModel">Model Name</label>
+            <input type="text" id="ollamaModel" placeholder="e.g. llama3.2:1b, mistral, gemma2">
+          </div>
+        </div>
+
+        <div class="llm-status-box">
+          <button id="test-ollama-btn" class="btn btn-secondary">Test Connection & Fetch Models</button>
+          <div id="ollama-status-message" class="status-msg">Click above to verify your local Ollama service.</div>
+        </div>
+
+        <div class="info-callout" style="margin-top: 20px;">
+          <h4>💡 Recommendations for 4 GB RAM systems:</h4>
+          <ul>
+            <li>Use lightweight models like <code>llama3.2:1b</code> or <code>qwen2.5:0.5b</code> / <code>qwen2.5:1.5b</code>.</li>
+            <li>Run command in PowerShell: <code>ollama run llama3.2:1b</code></li>
+            <li>Local models run 100% on your machine with no external network requests.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Backup & Demo Data -->
+    <section id="tab-backup" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">Demo Testing Profile</h2>
+        <p class="card-desc">Switch between your real personal profile and the separate Demo Profile for safe local testing. Activating the demo profile will <strong>never</strong> modify or overwrite your real personal profile data.</p>
+        
+        <div id="demo-mode-indicator-box" style="padding: 12px 16px; background-color: #f8fafc; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 14px;">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 4px;" id="options-active-mode-title">Active Profile: Real Profile</div>
+          <div style="font-size: 12px; color: var(--text-muted);" id="options-active-mode-details">Using your saved personal profile for all question matching.</div>
+        </div>
+
+        <div class="actions-row">
+          <button id="activate-demo-profile-btn" class="btn btn-secondary">Activate Demo Profile (Rahul, Age 35, IT, ₹20 LPA, Delhi)</button>
+          <button id="activate-real-profile-btn" class="btn btn-secondary">Activate My Real Profile</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Demo Survey & Local Server</h2>
+        <p class="card-desc">Open the local test survey to verify question scanning and field filling (run <code>node server.js</code> in workspace).</p>
+        <div class="actions-row">
+          <button id="open-demo-survey-btn" class="btn btn-primary">Open Demo Survey (localhost:8080)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Profile Data Management</h2>
+        <p class="card-desc">Export your profile to a local JSON file or import a previously exported profile.</p>
+        <div class="actions-row">
+          <button id="export-profile-btn" class="btn btn-secondary">Export Profile (JSON)</button>
+          <label class="btn btn-secondary file-upload-label">
+            Import Profile (JSON)
+            <input type="file" id="import-profile-input" accept=".json" style="display: none;">
+          </label>
+          <button id="clear-profile-btn" class="btn btn-danger">Reset All Profile Data</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Save bar -->
+    <footer class="app-footer">
+      <div id="save-status" class="save-status-indicator">All changes saved locally.</div>
+      <button id="save-bottom-btn" class="btn btn-primary">Save Profile</button>
+    </footer>
+  </div>
+
+  <script src="demo_profile.js"></script>
+  <script src="llm_adapter.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
+

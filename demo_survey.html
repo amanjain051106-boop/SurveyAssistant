@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurveyAssistant - Demo Survey Page</title>
+  <script src="demo_survey.js"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --text: #1e293b;
+      --border: #cbd5e1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .survey-container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    .banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      color: #1e3a8a;
+      font-size: 14px;
+    }
+
+    .banner h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #1e40af;
+    }
+
+    .banner ol {
+      margin-left: 20px;
+      margin-top: 6px;
+    }
+
+    .banner li {
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    p.subtitle {
+      color: #64748b;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .question-block {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .question-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    .question-title span.req {
+      color: #ef4444;
+    }
+
+    fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    legend {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .choice-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .choice-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .choice-label input {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-submit {
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-submit:hover {
+      background-color: #1d4ed8;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="survey-container">
+    <!-- Test Instructions Banner -->
+    <div class="banner">
+      <h3>🧪 Safe Demo Survey Environment</h3>
+      <p>Test the <strong>SurveyAssistant</strong> extension on this page safely:</p>
+      <ol>
+        <li>Click the <strong>SurveyAssistant</strong> icon in your browser toolbar.</li>
+        <li>Select <strong>Demo Profile</strong> or <strong>My Real Profile</strong>.</li>
+        <li>Click <strong>🔍 Scan Page</strong>.</li>
+        <li>Review the suggested answers (inspect, edit, or check/uncheck any item).</li>
+        <li>Click <strong>✏️ Fill Form</strong> to fill and highlight elements.</li>
+        <li>Notice that SurveyAssistant <em>never</em> automatically clicks Submit!</li>
+      </ol>
+    </div>
+
+    <h1>Consumer, Housing & Technology Survey 2026</h1>
+    <p class="subtitle">Legitimate sample survey for testing SurveyAssistant with realistic personal and demographic fields.</p>
+
+    <form id="demo-survey-form">
+      
+      <!-- Q1: Full Name -->
+      <div class="question-block">
+        <label for="fullName" class="question-title">1. What is your full name? <span class="req">*</span></label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+      </div>
+
+      <!-- Q2: Email -->
+      <div class="question-block">
+        <label for="email" class="question-title">2. What is your email address? <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="name@example.com">
+      </div>
+
+      <!-- Q3: Age -->
+      <div class="question-block">
+        <label for="age" class="question-title">3. What is your age in years? <span class="req">*</span></label>
+        <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g. 35">
+      </div>
+
+      <!-- Q4: Gender (Radio Group) -->
+      <div class="question-block">
+        <fieldset>
+          <legend>4. What is your gender identity? <span class="req">*</span></legend>
+          <div class="choice-group">
+            <label class="choice-label">
+              <input type="radio" name="gender" value="Male"> Male
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="gender" value="Female"> Female
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="gender" value="Non-binary"> Non-binary
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="gender" value="Prefer not to say"> Prefer not to say
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Q5: Country (Dropdown) -->
+      <div class="question-block">
+        <label for="country" class="question-title">5. What is your country of residence? <span class="req">*</span></label>
+        <select id="country" name="country">
+          <option value="">-- Please select --</option>
+          <option value="United States">United States</option>
+          <option value="Canada">Canada</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="India">India</option>
+          <option value="Germany">Germany</option>
+          <option value="Australia">Australia</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Q6: Education (Dropdown) -->
+      <div class="question-block">
+        <label for="education" class="question-title">6. What is your highest level of education completed?</label>
+        <select id="education" name="education">
+          <option value="">-- Please select --</option>
+          <option value="High School">High School</option>
+          <option value="Bachelor's Degree">Bachelor's Degree</option>
+          <option value="Master's Degree">Master's Degree</option>
+          <option value="Doctorate">Doctorate or Professional Degree</option>
+        </select>
+      </div>
+
+      <!-- Q7: Employment (Radio Group) -->
+      <div class="question-block">
+        <fieldset>
+          <legend>7. Which best describes your current employment status?</legend>
+          <div class="choice-group">
+            <label class="choice-label">
+              <input type="radio" name="employment" value="Employed full-time"> Employed full-time
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="employment" value="Employed part-time"> Employed part-time
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="employment" value="Self-employed"> Self-employed / Freelance
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="employment" value="Student"> Student
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="employment" value="Retired"> Retired
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Q8: Occupation / Field of Work (Dropdown) -->
+      <div class="question-block">
+        <label for="occupation" class="question-title">8. What is your occupation / primary field of work?</label>
+        <select id="occupation" name="occupation">
+          <option value="">-- Please select --</option>
+          <option value="IT professional">Information Technology / IT professional</option>
+          <option value="Healthcare">Healthcare & Medicine</option>
+          <option value="Finance">Financial Services & Banking</option>
+          <option value="Education">Education & Academia</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Q9: Annual Income Range (Dropdown) -->
+      <div class="question-block">
+        <label for="income" class="question-title">9. What is your annual income bracket?</label>
+        <select id="income" name="income">
+          <option value="">-- Please select --</option>
+          <option value="Under ₹5 LPA">Under ₹5 LPA</option>
+          <option value="₹5 - ₹10 LPA">₹5 - ₹10 LPA</option>
+          <option value="₹10 - ₹15 LPA">₹10 - ₹15 LPA</option>
+          <option value="₹15 - ₹25 LPA">₹15 - ₹25 LPA</option>
+          <option value="Above ₹25 LPA">Above ₹25 LPA</option>
+        </select>
+      </div>
+
+      <!-- Q10: Marital Status (Radio Group) -->
+      <div class="question-block">
+        <fieldset>
+          <legend>10. What is your marital status?</legend>
+          <div class="choice-group">
+            <label class="choice-label">
+              <input type="radio" name="maritalStatus" value="Single"> Single
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="maritalStatus" value="Married"> Married
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="maritalStatus" value="Divorced"> Divorced
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="maritalStatus" value="Widowed"> Widowed
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Q11: Number of Children (Radio Group) -->
+      <div class="question-block">
+        <fieldset>
+          <legend>11. How many children do you have?</legend>
+          <div class="choice-group">
+            <label class="choice-label">
+              <input type="radio" name="children" value="None"> None
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="children" value="1"> 1
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="children" value="2"> 2
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="children" value="3 or more"> 3 or more
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Q12: City / Residence (Text) -->
+      <div class="question-block">
+        <label for="city" class="question-title">12. What is your city of residence?</label>
+        <input type="text" id="city" name="city" placeholder="e.g. Delhi or Mumbai">
+      </div>
+
+      <!-- Q13: Housing Status (Radio Group) -->
+      <div class="question-block">
+        <fieldset>
+          <legend>13. What is your housing status?</legend>
+          <div class="choice-group">
+            <label class="choice-label">
+              <input type="radio" name="housing" value="Own apartment"> Own apartment
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="housing" value="Own independent house"> Own independent house
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="housing" value="Rented apartment"> Rented apartment
+            </label>
+            <label class="choice-label">
+              <input type="radio" name="housing" value="Rented house"> Rented house
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Q14: Devices (Checkbox Group) -->
+      <div class="question-block">
+        <fieldset>
+          <legend>14. Which digital devices do you use on a daily basis? (Select all that apply)</legend>
+          <div class="choice-group">
+            <label class="choice-label">
+              <input type="checkbox" name="devices" value="Computer"> Computer / Laptop
+            </label>
+            <label class="choice-label">
+              <input type="checkbox" name="devices" value="Smartphone"> Smartphone
+            </label>
+            <label class="choice-label">
+              <input type="checkbox" name="devices" value="Tablet"> Tablet
+            </label>
+            <label class="choice-label">
+              <input type="checkbox" name="devices" value="Smartwatch"> Smartwatch / Fitness Tracker
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Q15: Ambiguous/Custom Fact Question (Tests fallback to NEEDS USER INPUT when not in profile) -->
+      <div class="question-block">
+        <label for="commute" class="question-title">15. What is your primary commute method?</label>
+        <input type="text" id="commute" name="commute" placeholder="e.g. Metro, Car, Bicycle">
+      </div>
+
+      <!-- Q16: Comments (Textarea) -->
+      <div class="question-block">
+        <label for="comments" class="question-title">16. Additional comments or feedback:</label>
+        <textarea id="comments" name="comments" rows="3" placeholder="Any additional thoughts or suggestions..."></textarea>
+      </div>
+
+      <!-- Submit Section -->
+      <div class="form-footer">
+        <span class="footer-note">User-controlled submission</span>
+        <button type="submit" class="btn-submit">Submit Survey</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>

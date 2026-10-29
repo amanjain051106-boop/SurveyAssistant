@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurveyAssistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-wrapper">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-brand">
+        <img src="icons/icon32.png" alt="SurveyAssistant" class="header-logo">
+        <div>
+          <h1 class="header-title">SurveyAssistant</h1>
+          <div class="header-sub" id="llm-status-pill">
+            <span class="status-dot"></span>
+            <span id="llm-status-text">Rules Engine</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-right-actions">
+        <button id="open-settings-btn" class="icon-btn" title="Open Profile & Settings">
+          ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- Profile Selection / Demo Indicator Bar -->
+    <div id="demo-profile-banner" class="demo-profile-banner" style="display: none;">
+      <div class="demo-banner-content">
+        <span class="demo-tag">DEMO PROFILE ACTIVE</span>
+        <span class="demo-summary">Age 35 | Male | IT professional | ₹20 LPA | Delhi</span>
+      </div>
+      <button id="switch-to-real-btn" class="btn-link" title="Return to your saved personal profile">Return to Real Profile</button>
+    </div>
+
+    <!-- Active Profile Mode Switcher Pill -->
+    <div class="profile-mode-bar">
+      <span class="mode-label">Active Profile:</span>
+      <span id="active-profile-name" class="profile-name-tag">My Saved Profile</span>
+      <button id="toggle-profile-mode-btn" class="btn btn-xs btn-outline">Switch to Demo Profile</button>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <button id="scan-page-btn" class="btn btn-primary">
+        🔍 Scan Page
+      </button>
+      <button id="fill-approved-btn" class="btn btn-success" disabled>
+        ✏️ Fill Form
+      </button>
+    </div>
+
+    <!-- Alert / Status Banner -->
+    <div id="notice-banner" class="notice-banner" style="display: none;">
+      <span id="notice-text"></span>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="popup-main">
+      <!-- Initial State / Empty View -->
+      <div id="empty-view" class="empty-view">
+        <div class="empty-icon">📋</div>
+        <h3>Ready to assist</h3>
+        <p>Open any survey page and click <strong>Scan Page</strong> to detect visible questions and match with your profile.</p>
+        <div class="demo-actions" style="margin-top: 12px; display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 280px;">
+          <button id="launch-demo-btn" class="btn btn-secondary btn-sm">
+            🌐 Open Demo Survey (localhost:8080)
+          </button>
+        </div>
+        <p class="subtext-note" style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+          Tip: Run <code>node server.js</code> in workspace for local test survey.
+        </p>
+      </div>
+
+      <!-- Scanning Loading State -->
+      <div id="loading-view" class="loading-view" style="display: none;">
+        <div class="spinner"></div>
+        <p id="loading-text">Scanning page questions...</p>
+      </div>
+
+      <!-- Review Section -->
+      <div id="review-view" class="review-view" style="display: none;">
+        <div class="review-header">
+          <div class="review-stats">
+            <span id="stat-total" class="stat-badge">0 found</span>
+            <span id="stat-matched" class="stat-badge stat-success">0 ready</span>
+            <span id="stat-needs-input" class="stat-badge stat-warning">0 needs input</span>
+            <span id="stat-existing" class="stat-badge stat-muted" style="display: none;">0 filled</span>
+          </div>
+          <div class="review-controls-row">
+            <label class="select-all-label">
+              <input type="checkbox" id="toggle-select-all" checked>
+              <span>Select all ready</span>
+            </label>
+            <label class="select-all-label overwrite-label" title="When checked, fields already containing an answer will be updated">
+              <input type="checkbox" id="toggle-overwrite-existing">
+              <span>Overwrite existing</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Scrollable Questions List -->
+        <div id="questions-list" class="questions-list">
+          <!-- Dynamically populated question cards -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Security Note -->
+    <footer class="popup-footer">
+      <span class="shield-icon">🛡️</span>
+      <span>100% Local. Review before filling. Never auto-submits.</span>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="demo_profile.js"></script>
+  <script src="llm_adapter.js"></script>
+  <script src="matcher.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
